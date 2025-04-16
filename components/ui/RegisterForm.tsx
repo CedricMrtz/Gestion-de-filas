@@ -1,7 +1,10 @@
 import React from 'react';
+import { useRouter } from 'expo-router';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 const RegisterForm = () => {
+  const router= useRouter();
+
   return (
     <View style={styles.formBox}>
       <View style={styles.inputGroup}>
@@ -49,6 +52,11 @@ const RegisterForm = () => {
           <Text style={styles.buttonText}>Registrarse</Text>
         </TouchableOpacity>
       </View>
+      <View>
+        <TouchableOpacity onPress={() => router.push({pathname:'../../IniciarSesion', params:{ replace: 0 }})}>
+          <Text style={styles.link}>¿Ya tienes cuenta?</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -56,7 +64,7 @@ const RegisterForm = () => {
 const styles = StyleSheet.create({
   formBox: {
     padding: 20,
-    // marginBottom: 60,
+    marginTop: 5,
   },
   inputGroup: {
     marginBottom: 16,
@@ -89,7 +97,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: '#007bff',
+    backgroundColor: '#172A3A',
     paddingVertical: 14,
     borderRadius: 8,
     alignItems: 'center',
@@ -97,6 +105,11 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: '600',
+  },
+  link: {
+    color: '#172A3A',
+    textAlign: 'center',
+    marginTop: 10,
   },
 });
 

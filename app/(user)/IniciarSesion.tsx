@@ -2,6 +2,7 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import { useSearchParams } from 'expo-router/build/hooks'
 import LogoUp from '@/components/ui/LogoUp'
 import LoginForm from '@/components/ui/LoginForm'
+import RegisterForm from '@/components/ui/RegisterForm';
 
 const IniciarSesion = () => {
     const searchParams = useSearchParams();
@@ -11,10 +12,10 @@ const IniciarSesion = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <LogoUp />
       <View>
-        <Text style={styles.title}>Inicia Sesion</Text>
+        <Text style={styles.title}>{replace=='0' ? "Inicia Sesión" : "Registrate"}</Text>
       </View>
       <View style={{ marginBottom: 60 }}>
-        <LoginForm />
+        {replace=='0' ? <LoginForm /> : <RegisterForm />}
       </View>
     </ScrollView>
   );

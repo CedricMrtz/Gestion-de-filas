@@ -37,7 +37,7 @@ const LoginForm = () => {
       <TouchableOpacity onPress={() => Alert.alert('Recuperar contraseña')}>
         <Text style={styles.link}>¿Olvidó la contraseña?</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => router.push('../../Registrarse')}>
+      <TouchableOpacity onPress={() => router.push({pathname:'../../IniciarSesion', params:{ replace: 1 }})}>
         <Text style={styles.link}>Crear cuenta</Text>
       </TouchableOpacity>
     </View>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   formBox: {
     padding: 20,
     gap: 20,
+    marginTop: 20,
   },
   inputGroup: {
     gap: 4,
