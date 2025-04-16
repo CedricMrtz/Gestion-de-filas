@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        gap: 8, // Note: only supported in newer React Native versions
+        gap: 8,
         flexShrink: 0,
         borderRadius: 100,
         backgroundColor: "#508991",

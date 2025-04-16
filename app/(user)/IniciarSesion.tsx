@@ -1,0 +1,41 @@
+import { View, Text, ScrollView, StyleSheet } from 'react-native'
+import { useSearchParams } from 'expo-router/build/hooks'
+import LogoUp from '@/components/ui/LogoUp'
+import LoginForm from '@/components/ui/LoginForm'
+
+const IniciarSesion = () => {
+    const searchParams = useSearchParams();
+    const replace = searchParams.get('replace')
+  
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      <LogoUp />
+      <View>
+        <Text style={styles.title}>Inicia Sesion</Text>
+      </View>
+      <View style={{ marginBottom: 60 }}>
+        <LoginForm />
+      </View>
+    </ScrollView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 20,
+    backgroundColor: "#ffffff",
+  },
+  title:{
+    // width: 312,
+    // height: 63,
+    flexShrink: 0,
+    fontSize: 40,
+    color: "#172A3A",
+    textDecorationLine: "underline",
+  }
+})
+
+export default IniciarSesion
