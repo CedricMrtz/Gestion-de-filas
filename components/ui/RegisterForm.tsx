@@ -46,7 +46,7 @@ const RegisterForm = () => {
           style={styles.button}
           onPress={() => {
             // Registration logic here
-            Alert.alert('Registrarse');
+            router.push('../../MenuFinder');
           }}
         >
           <Text style={styles.buttonText}>Registrarse</Text>

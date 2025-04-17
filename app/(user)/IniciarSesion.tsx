@@ -12,7 +12,7 @@ const IniciarSesion = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <LogoUp />
       <View>
-        <Text style={styles.title}>{replace=='0' ? "Inicia Sesión" : "Registrate"}</Text>
+        <Text style={styles.title}>{replace=='0' ? "Inicia Sesión" : replace=='1' ? "Registrate" : "Negocio"}</Text>
       </View>
       <View style={{ marginBottom: 60 }}>
         {replace=='0' ? <LoginForm /> : <RegisterForm />}

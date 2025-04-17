@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
     alignItems: "center",
   },
+  
 })
 
 export default layout

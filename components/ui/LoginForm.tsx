@@ -28,7 +28,7 @@ const LoginForm = () => {
       <View style={styles.buttonGroup}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => Alert.alert('Iniciar sesión')}
+          onPress={() => router.push('../../MenuFinder')}
         >
           <Text style={styles.buttonText}>Iniciar sesión</Text>
         </TouchableOpacity>

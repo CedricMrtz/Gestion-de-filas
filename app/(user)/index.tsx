@@ -22,7 +22,7 @@ export default function Index() {
           </TouchableOpacity>
         </View>
         <View style={styles.bottom}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push({pathname:'/IniciarSesion', params:{ replace: 2 }})}>
               <Text>¿Eres negocio?</Text>
           </TouchableOpacity>
         </View>
