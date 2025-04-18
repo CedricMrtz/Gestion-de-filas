@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { CameraView, CameraCapturedPicture, useCameraPermissions, CameraType } from 'expo-camera';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useRouter } from 'expo-router';
 
 //To do: Add the function to detect qr codes
@@ -65,13 +66,19 @@ export default function CameraScreen() {
 
       {/* Botón para disparar foto */}
       <TouchableOpacity style={styles.button} onPress={takePicture}>
-        <Text style={styles.buttonText}>📸 Tomar foto</Text>
+        <MaterialIcons style={styles.buttonText} name="add-a-photo" size={24} color="black" />
       </TouchableOpacity>
 
-      {/* Mostrar preview */}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={() => router.push('../../Menu')}>
+          <Text style={styles.buttonText}>Menu</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Mostrar preview
       {photoUri && (
         <Image source={{ uri: photoUri }} style={styles.preview} />
-      )}
+      )} */}
       
     </View>
   );
@@ -90,8 +97,8 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 12, backgroundColor: '#ffffff88',
-    borderRadius: 8,
+    borderRadius: 8, marginBottom: 200,
   },
-  buttonText: { fontSize: 18 },
+  buttonText: { fontSize: 18, alignContent: 'center', },
   preview: { flex: 2, width: '100%', resizeMode: 'contain' },
 });
