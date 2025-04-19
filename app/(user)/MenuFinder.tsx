@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { CameraView, CameraCapturedPicture, useCameraPermissions, CameraType } from 'expo-camera';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { CameraView, useCameraPermissions } from 'expo-camera';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 
-//To do: Add the function to detect qr codes
+//To do: Add the function to detect qr codes and make that when this is closed, close the camera also
 
 export default function CameraScreen() {
   const router = useRouter();
@@ -18,6 +18,20 @@ export default function CameraScreen() {
       requestPermission();
     })();
   },[]);
+
+  //Close the camera when the screen is unfocused
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        //cameraRef.current = null;
+        cameraRef.current?.pausePreview();
+        // Reset the camera reference and photo URI when the screen is unfocused
+        cameraRef.current = null;
+        setPhotoUri(null);
+        console.log('Camera reseted')
+      };
+    }, [])
+  );
   
   if(!permission) {
     return (
@@ -61,6 +75,10 @@ export default function CameraScreen() {
         style={styles.camera}
         facing="back"
         ref={cameraRef}
+        barcodeScannerSettings={{barcodeTypes: ['qr']}}
+        onBarcodeScanned={({ data }) => {
+          console.log('Código QR escaneado:', data);
+        }}
         onCameraReady={() => console.log('Cámara lista')}
       />
 

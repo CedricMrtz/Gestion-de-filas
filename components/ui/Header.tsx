@@ -1,17 +1,19 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { useRouter } from 'expo-router';
 
 const Header = () => {
+  const router = useRouter();
   return (
     <View>
         <View style={styles.topBar}>
             <View style={styles.logo} />
             <View style={{ flexDirection: 'row', gap: 10 }}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => router.push('/(store)/Cart')}>
                     <AntDesign name="shoppingcart" size={42} color="black" />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => router.push('/(store)/User')}>
                     <AntDesign name="user" size={42} color="black" />
                 </TouchableOpacity>
             </View>

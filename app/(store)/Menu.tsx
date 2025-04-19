@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import Header from '@/components/ui/Header'
 import FoodCard from '@/components/ui/FoodCard'
@@ -7,13 +7,27 @@ import FoodCard from '@/components/ui/FoodCard'
 
 const Menu = () => {
   return (
-    <View>
-      <Header/>
-      <View style={styles.container}>
-        <FoodCard/>
-        <FoodCard/>
+    <ScrollView>
+      <View>
+        <Header/>
+        <View style={styles.container}>
+          <FoodCard/>
+          <FoodCard/>
+        </View>
+        <View style={styles.container}>
+          <FoodCard/>
+          <FoodCard/>
+        </View>
+        <View style={styles.container}>
+          <FoodCard/>
+          <FoodCard/>
+        </View>
+        <View style={styles.container}>
+          <FoodCard/>
+          <FoodCard/>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
@@ -24,6 +38,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     gap: 39,
+    paddingVertical: 16,
   }
 })
 
