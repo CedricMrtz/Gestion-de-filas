@@ -9,7 +9,7 @@ const Menu = () => {
   return (
     <ScrollView>
       <View>
-        <Header/>
+        <Header text='CETYS Universidad'/>
         <View style={styles.container}>
           <FoodCard/>
           <FoodCard/>

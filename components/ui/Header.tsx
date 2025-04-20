@@ -3,7 +3,12 @@ import React from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from 'expo-router';
 
-const Header = () => {
+// props passed to the component
+interface HeaderProps {
+    text: string;
+}
+
+const Header: React.FC<HeaderProps> = ({text}) => {
   const router = useRouter();
   return (
     <View>
@@ -19,7 +24,7 @@ const Header = () => {
             </View>
         </View>
         <View>
-            <Text style={styles.banner}>CETYS Universidad</Text>
+            <Text style={styles.banner}>{text}</Text>
         </View>
     </View>
   )
