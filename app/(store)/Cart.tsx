@@ -16,7 +16,7 @@ const Cart: React.FC <Props> = ({price}) => {
         <View style={styles.footer}>
           <View style={styles.price}>
             <Text style={{fontSize:17}}>Subtotal</Text>
-            <Text style={{fontSize:17}}>121212</Text>
+            <Text style={{fontSize:17}}>100</Text>
           </View>
           <TouchableOpacity>
             <View style={styles.paybtn}>
@@ -46,12 +46,14 @@ const styles = StyleSheet.create({
     transform: [{translateY: 18 }],
   },
   price:{
+    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 9,
-    width: 354,
-    //gap: 12,
-    //padding: 120,
+    width: '100%',
+    maxWidth: 340,
+    marginLeft: 'auto',
+    marginRight: 'auto',
   }
 })
 

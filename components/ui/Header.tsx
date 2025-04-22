@@ -2,16 +2,20 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from 'expo-router';
+import Profile from '@/components/Profile'
 
 // props passed to the component
 interface HeaderProps {
     text: string;
 }
 
+
+
 const Header: React.FC<HeaderProps> = ({text}) => {
   const router = useRouter();
   return (
-    <View>
+    <View style={styles.container}>
+        <Profile/>
         <View style={styles.topBar}>
             <View style={styles.logo} />
             <View style={{ flexDirection: 'row', gap: 10 }}>
@@ -31,6 +35,9 @@ const Header: React.FC<HeaderProps> = ({text}) => {
 }
 
 const styles = StyleSheet.create({
+    container:{
+        zIndex:1,
+    },
     topBar:{
         flexDirection: 'row',
         alignItems: 'center',
@@ -63,6 +70,9 @@ const styles = StyleSheet.create({
         lineHeight: 48,
         paddingLeft: 16,
     },
+    profile:{
+        zIndex: 0,
+    }
 
 })
 
