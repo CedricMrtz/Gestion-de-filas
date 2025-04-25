@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator } from 'react-native';
+//Firabase imports
+import { FIREBASE_AUTH } from '@/FIrebaseConfig'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const RegisterForm = () => {
+  //Firebase variables
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const auth = FIREBASE_AUTH
+
   const router= useRouter();
+
+  const signUp = async () =>{
+      setLoading(true)
+      try{
+        const response = await createUserWithEmailAndPassword(auth, email, password)
+        console.log(response)
+      } catch(error){
+        console.log(error)
+        alert(error)
+      } finally{
+        setLoading(false)
+      }
+    }
 
   return (
     <View style={styles.formBox}>
@@ -41,17 +64,20 @@ const RegisterForm = () => {
         />
       </View>
 
-      <View style={styles.buttonGroup}>
+    {loading ? <ActivityIndicator size='large' color={'#0000ff'} /> 
+          : <>
+            <View style={styles.buttonGroup}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            // Registration logic here
-            router.push('../../MenuFinder');
+            signUp()
           }}
         >
           <Text style={styles.buttonText}>Registrarse</Text>
         </TouchableOpacity>
       </View>
+          </>}
+      
       <View>
         <TouchableOpacity onPress={() => router.push({pathname:'../../IniciarSesion', params:{ replace: 0 }})}>
           <Text style={styles.link}>¿Ya tienes cuenta?</Text>

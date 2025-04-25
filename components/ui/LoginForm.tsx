@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator, Button } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator } from 'react-native';
 //Firabase imports
 import { FIREBASE_AUTH } from '@/FIrebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -19,19 +19,6 @@ const LoginForm = () => {
     setLoading(true)
     try{
       const response = await signInWithEmailAndPassword(auth,email, password)
-      console.log(response)
-    } catch(error){
-      console.log(error)
-      alert(error)
-    } finally{
-      setLoading(false)
-    }
-  }
-  
-  const signUp = async () =>{
-    setLoading(true)
-    try{
-      const response = await createUserWithEmailAndPassword(auth, email, password)
       console.log(response)
     } catch(error){
       console.log(error)
@@ -68,19 +55,16 @@ const LoginForm = () => {
 
       {loading ? <ActivityIndicator size='large' color={'#0000ff'} /> 
       : <>
-        <Button title="Login" onPress={() => {signIn()}}/>
-        <Button title="Create" onPress={() => {signUp()}}/>
-      
-      </>}
-
-      <View style={styles.buttonGroup}>
+        <View style={styles.buttonGroup}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push('../../MenuFinder')}
+          onPress={() => {signIn()}}
+          //onPress={() => router.push('../../MenuFinder')}
         >
           <Text style={styles.buttonText}>Iniciar sesión</Text>
         </TouchableOpacity>
       </View>
+      </>}
 
       <TouchableOpacity onPress={() => Alert.alert('Recuperar contraseña')}>
         <Text style={styles.link}>¿Olvidó la contraseña?</Text>
