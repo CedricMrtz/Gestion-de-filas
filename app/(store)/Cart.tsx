@@ -1,4 +1,5 @@
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import {useRouter} from 'expo-router'
 import React from 'react'
 import Header from '@/components/ui/Header'
 import CartCard from '@/components/ui/CartCard'
@@ -8,6 +9,7 @@ interface Props{
 }
 
 const Cart: React.FC <Props> = ({price}) => {
+  const router = useRouter()
   return (
     <ScrollView>
         <Header text='Carrito'/>
@@ -18,7 +20,7 @@ const Cart: React.FC <Props> = ({price}) => {
             <Text style={{fontSize:17}}>Subtotal</Text>
             <Text style={{fontSize:17}}>100</Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push('/(store)/Payment')}>
             <View style={styles.paybtn}>
               <Text style={styles.pay}>Proceder con el pago</Text>
             </View>

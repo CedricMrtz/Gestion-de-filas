@@ -1,28 +1,28 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from 'expo-router';
-import Profile from '@/components/Profile'
+import ProfileSlider from '@/components/ProfileSlider'
 
 // props passed to the component
 interface HeaderProps {
     text: string;
 }
 
-
-
 const Header: React.FC<HeaderProps> = ({text}) => {
   const router = useRouter();
+  const [profileOpen, setProfileOpen] = useState(false);
   return (
     <View style={styles.container}>
-        <Profile/>
         <View style={styles.topBar}>
-            <View style={styles.logo} />
+            <TouchableOpacity onPress={() => router.push('/(store)/Menu')}>
+                <View style={styles.logo} />
+            </TouchableOpacity>
             <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TouchableOpacity onPress={() => router.push('/(store)/Cart')}>
                     <AntDesign name="shoppingcart" size={42} color="black" />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => router.push('/(store)/User')}>
+                <TouchableOpacity onPress={() => setProfileOpen(true)}>
                     <AntDesign name="user" size={42} color="black" />
                 </TouchableOpacity>
             </View>
@@ -30,6 +30,10 @@ const Header: React.FC<HeaderProps> = ({text}) => {
         <View>
             <Text style={styles.banner}>{text}</Text>
         </View>
+        <ProfileSlider
+            visible={profileOpen}
+            onClose={() => setProfileOpen(false)} 
+        />
     </View>
   )
 }

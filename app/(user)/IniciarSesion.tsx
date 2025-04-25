@@ -1,5 +1,6 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import { useSearchParams } from 'expo-router/build/hooks'
+//Components
 import LogoUp from '@/components/ui/LogoUp'
 import LoginForm from '@/components/ui/LoginForm'
 import RegisterForm from '@/components/ui/RegisterForm';

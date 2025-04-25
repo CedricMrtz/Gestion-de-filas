@@ -1,11 +1,46 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { useState } from 'react'
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator, Button } from 'react-native';
+//Firabase imports
+import { FIREBASE_AUTH } from '@/FIrebaseConfig'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const LoginForm = () => {
-  //Hook to navigate between screens
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const auth = FIREBASE_AUTH
+  
   const router = useRouter();
 
+  const signIn = async () =>{
+    setLoading(true)
+    try{
+      const response = await signInWithEmailAndPassword(auth,email, password)
+      console.log(response)
+    } catch(error){
+      console.log(error)
+      alert(error)
+    } finally{
+      setLoading(false)
+    }
+  }
+  
+  const signUp = async () =>{
+    setLoading(true)
+    try{
+      const response = await createUserWithEmailAndPassword(auth, email, password)
+      console.log(response)
+    } catch(error){
+      console.log(error)
+      alert(error)
+    } finally{
+      setLoading(false)
+    }
+  }
+  
   return (
     <View style={styles.formBox}>
       <View style={styles.inputGroup}>
@@ -13,7 +48,10 @@ const LoginForm = () => {
         <TextInput
           style={styles.input}
           placeholder="Email"
-        />
+          autoCapitalize='none'
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+          />
       </View>
 
       <View style={styles.inputGroup}>
@@ -22,8 +60,18 @@ const LoginForm = () => {
           style={styles.input}
           placeholder="Password"
           secureTextEntry
+          autoCapitalize='none'
+          onChangeText={(text) => setPassword(text)}
+          value={password}
         />
       </View>
+
+      {loading ? <ActivityIndicator size='large' color={'#0000ff'} /> 
+      : <>
+        <Button title="Login" onPress={() => {signIn()}}/>
+        <Button title="Create" onPress={() => {signUp()}}/>
+      
+      </>}
 
       <View style={styles.buttonGroup}>
         <TouchableOpacity
