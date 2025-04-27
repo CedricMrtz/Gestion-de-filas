@@ -1,8 +1,8 @@
-import { Text, View, StyleSheet, TouchableOpacity, ScrollView, Pressable } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView, Image } from "react-native";
 import BtnCard from '@/components/ui/BtnCard';
 import LogoUp from "@/components/ui/LogoUp";
+import Logo from "@/components/ui/Logo";
 import { useRouter } from "expo-router";
-//import { ScrollView } from "react-native-reanimated/lib/typescript/Animated";
 
 //Definition of the component
 export default function Index() {
@@ -11,7 +11,7 @@ export default function Index() {
 
   return ( 
       <ScrollView contentContainerStyle={styles.container}>
-        <LogoUp />
+        <LogoUp/>
         <View style={styles.middle}>
           {/* navigate to the screen and give a param for rendering */}
           <TouchableOpacity onPress={() => router.push({pathname:'/IniciarSesion', params:{ replace: 0 }})}>

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from 'expo-router';
@@ -16,7 +16,9 @@ const Header: React.FC<HeaderProps> = ({text}) => {
     <View style={styles.container}>
         <View style={styles.topBar}>
             <TouchableOpacity onPress={() => router.push('/(store)/Menu')}>
-                <View style={styles.logo} />
+                <View>
+                    <Image style={styles.logo} source={require('../../assets/logo.png')} />
+                </View>
             </TouchableOpacity>
             <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TouchableOpacity onPress={() => router.push('/(store)/Cart')}>
@@ -54,6 +56,7 @@ const styles = StyleSheet.create({
         height: 43,
         backgroundColor: '#09BC8A',
         flexShrink: 0,
+        transform: [{ translateY: 4 }],
     },
     banner:{
         marginTop: 28,

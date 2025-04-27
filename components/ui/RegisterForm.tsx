@@ -20,6 +20,7 @@ const RegisterForm = () => {
       try{
         const response = await createUserWithEmailAndPassword(auth, email, password)
         console.log(response)
+        router.replace({pathname:'/(store)/Menu'});
       } catch(error){
         console.log(error)
         alert(error)
@@ -30,11 +31,15 @@ const RegisterForm = () => {
 
   return (
     <View style={styles.formBox}>
+
       <View style={styles.inputGroup}>
-        <Text style={styles.label}>Nombre</Text>
+        <Text style={styles.label}>Correo</Text>
         <TextInput
           style={styles.input}
-          placeholder="Name"
+          placeholder="Mail"
+          autoCapitalize='none'
+          onChangeText={(text) => setEmail(text)}
+          value={email}
         />
       </View>
 
@@ -44,23 +49,9 @@ const RegisterForm = () => {
           style={styles.input}
           placeholder="Password"
           secureTextEntry
-        />
-      </View>
-
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Confirmar contraseña</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm Password"
-          secureTextEntry
-        />
-      </View>
-
-      <View style={styles.inputGroup}>
-        <Text style={styles.label}>Correo</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Mail"
+          autoCapitalize='none'
+          onChangeText={(text) => setPassword(text)}
+          value={password}
         />
       </View>
 

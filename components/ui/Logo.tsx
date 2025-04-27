@@ -1,10 +1,11 @@
-import { View, StyleSheet } from 'react-native'
-import logo from "../assets/logo.png"
+import { View, StyleSheet, Image } from 'react-native'
 
 //Definition of the component
 const Logo = () => {
   return (
-    <View style={styles.image} />
+    <View style={styles.image}>
+      <Image source={require('../../assets/logo.png')} />
+    </View>
   )
 }
 

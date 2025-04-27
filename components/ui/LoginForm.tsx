@@ -20,6 +20,7 @@ const LoginForm = () => {
     try{
       const response = await signInWithEmailAndPassword(auth,email, password)
       console.log(response)
+      router.replace({pathname:'/(store)/Menu'});
     } catch(error){
       console.log(error)
       alert(error)

@@ -1,13 +1,24 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image, ImageSourcePropType, TouchableOpacity } from 'react-native'
 import React from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-const FoodCard = () => {
-  const favorite = false;
+interface MenuProps {
+  food: ImageSourcePropType; 
+}
+
+const FoodCard: React.FC<MenuProps> = ({food}) => {
+  const [favorite, setFavorite] = React.useState(false);
   return (
     <View style={styles.btn}>
-      { favorite ? <AntDesign style={styles.heart} name="heart" size={24} color="black" /> : <AntDesign style={styles.heart} name="hearto" size={24} color="black" /> }
-      <View style={styles.img} />
+      { favorite ? <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+          <AntDesign style={styles.heart} name="heart" size={24} color="#09BC8A" />
+        </TouchableOpacity>
+      : <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+          <AntDesign style={styles.heart} name="hearto" size={24} color="#09BC8A" />
+      </TouchableOpacity> }
+      <View style={styles.img}>
+        <Image source={food} style={{ width: 120, height: 120, borderRadius: 60 }} />
+      </View>
       <AntDesign style={styles.add} name="pluscircle" size={24} color="#09BC8A"/>
       <Text style={styles.price}> $ 99 mxn</Text>
     </View>
