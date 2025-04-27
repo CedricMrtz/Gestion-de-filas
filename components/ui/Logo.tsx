@@ -1,4 +1,5 @@
 import { View, StyleSheet } from 'react-native'
+import logo from "../assets/logo.png"
 
 //Definition of the component
 const Logo = () => {
