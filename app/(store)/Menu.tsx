@@ -12,20 +12,20 @@ const Menu = () => {
       <View style={styles.bottom}>
         <Header text='CETYS Universidad'/>
         <View style={styles.container}>
-          <FoodCard food={require('../../assets/pastapollo.jpg')}/>
-          <FoodCard food={require('../../assets/polloteriyaki.jpg')} />
+          <FoodCard food={require('../../assets/alimentos/pastapollo.jpg')}/>
+          <FoodCard food={require('../../assets/alimentos/polloteriyaki.jpg')} />
         </View>
         <View style={styles.container}>
-          <FoodCard food={require('../../assets/tacomachaca.jpg')} />
-          <FoodCard food={require('../../assets/pollobbq.jpg')}/>
+          <FoodCard food={require('../../assets/alimentos/tacomachaca.jpg')} />
+          <FoodCard food={require('../../assets/alimentos/pollobbq.jpg')}/>
         </View>
         <View style={styles.container}>
-          <FoodCard food={require('../../assets/hamburguesa.jpg')}/>
-          <FoodCard/>
+          <FoodCard food={require('../../assets/alimentos/hamburguesa.jpg')}/>
+          <FoodCard food={require('../../assets/alimentos/pizza.jpg')} />
         </View>
         <View style={styles.container}>
-          <FoodCard/>
-          <FoodCard/>
+          <FoodCard food={require('../../assets/alimentos/croissant.jpg')} />
+          <FoodCard food={require('../../assets/alimentos/sandwich.jpg')} />
         </View>
       </View>
     </ScrollView>
