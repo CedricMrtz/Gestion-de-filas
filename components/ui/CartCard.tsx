@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ImageSourcePropType } from 'react-native'
 import React from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Entypo from '@expo/vector-icons/Entypo';
@@ -8,27 +8,35 @@ interface CartCardProps {
     price: number;
     name: string;
     quantity: number;
+    food: ImageSourcePropType
 
 }
 
 
-const CartCard = () => {
-//   quantity = 1;
+const CartCard: React.FC<CartCardProps> = ({name, price, food}) => {
+  let [quantity, setQuantity] = React.useState(1);
+
+  //Delete the element
+  if(quantity==0){
+    return(
+      <></>
+    )
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.left}>
         <View style={styles.img} />
       </View>
       <View style={styles.middle}>
-        <Text style={{fontSize: 20, color: 'black'}}>Pollo con pasta</Text>
-        <Text style={{fontSize: 16, color: 'black'}}> $ 99 mxn</Text>
+        <Text style={{fontSize: 20, color: 'black'}}>{ name }</Text>
+        <Text style={{fontSize: 16, color: 'black'}}> $ { price }</Text>
       </View>
-      <Entypo name="cross" size={24} color="black" style={{marginBottom: 60, transform: [{translateX: 80}]}} />
+      <Entypo name="cross" size={24} color="black" style={styles.cross} onPress={() => setQuantity(0)} />
       <View style={styles.right}>
-        <TouchableOpacity onPress={() => {}}><AntDesign name="plus" size={20} color="black" /></TouchableOpacity>
-        <Text style={{fontSize: 20, color: 'black', transform: [{translateY: -4}]}}>1</Text>
-        <TouchableOpacity onPress={() => {}}><AntDesign name="minus" size={20} color="black" /></TouchableOpacity>
-        
+        <TouchableOpacity onPress={() => {setQuantity(++quantity)}}><AntDesign name="plus" size={20} color="black" /></TouchableOpacity>
+        <Text style={{fontSize: 20, color: 'black', transform: [{translateY: -4}]}}>{ quantity }</Text>
+        <TouchableOpacity onPress={() => {setQuantity(--quantity)}}><AntDesign name="minus" size={20} color="black" /></TouchableOpacity>
       </View>
     </View>
   )
@@ -44,6 +52,10 @@ const styles = StyleSheet.create({
         marginTop: 73,
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    cross:{
+      marginBottom: 60, 
+      transform: [{translateX: 80}],
     },
     img:{
       borderRadius: 60,

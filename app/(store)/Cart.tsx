@@ -1,32 +1,39 @@
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import {useRouter} from 'expo-router'
+import { ProductsList, Product } from '@/components/ProductsList';
 import React from 'react'
 import Header from '@/components/ui/Header'
 import CartCard from '@/components/ui/CartCard'
 
-interface Props{
-  price: number
-}
+const Cart = () => {
 
-const Cart: React.FC <Props> = ({price}) => {
+  const [product, addProduct] = React.useState<Record<string, Product>>({});
+
   const router = useRouter()
+
   return (
-    <ScrollView>
-        <Header text='Carrito'/>
-        <CartCard/>
-        <CartCard/>
-        <View style={styles.footer}>
-          <View style={styles.price}>
-            <Text style={{fontSize:17}}>Subtotal</Text>
-            <Text style={{fontSize:17}}>100</Text>
-          </View>
-          <TouchableOpacity onPress={() => router.push('/(store)/Payment')}>
-            <View style={styles.paybtn}>
-              <Text style={styles.pay}>Proceder con el pago</Text>
+    <>
+      <ScrollView>
+          <Header text='Carrito'/>
+
+          <ProductsList.Provider value={{product, addProduct}}>
+            {/* <CartCard/>
+            <CartCard/> */}
+          </ProductsList.Provider>
+
+      </ScrollView>
+          <View style={styles.footer}>
+            <View style={styles.price}>
+              <Text style={{fontSize:17}}>Subtotal</Text>
+              <Text style={{fontSize:17}}>100</Text>
             </View>
-          </TouchableOpacity>
-        </View>
-    </ScrollView>
+            <TouchableOpacity onPress={() => router.push('/(store)/Payment')}>
+              <View style={styles.paybtn}>
+                <Text style={styles.pay}>Proceder con el pago</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+    </>
   )
 }
 

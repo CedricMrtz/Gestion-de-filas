@@ -12,20 +12,20 @@ const Menu = () => {
       <View style={styles.bottom}>
         <Header text='CETYS Universidad'/>
         <View style={styles.container}>
-          <FoodCard food={require('../../assets/alimentos/pastapollo.jpg')}/>
-          <FoodCard food={require('../../assets/alimentos/polloteriyaki.jpg')} />
+          <FoodCard food={require('../../assets/alimentos/pastapollo.jpg')} price={99} name={"Pollo con pasta"} />
+          <FoodCard food={require('../../assets/alimentos/polloteriyaki.jpg')} price={99} name={"Pollo con teriyaki"} />
         </View>
         <View style={styles.container}>
-          <FoodCard food={require('../../assets/alimentos/tacomachaca.jpg')} />
-          <FoodCard food={require('../../assets/alimentos/pollobbq.jpg')}/>
+          <FoodCard food={require('../../assets/alimentos/tacomachaca.jpg')} price={20} name={"Taco de machaca"} />
+          <FoodCard food={require('../../assets/alimentos/pollobbq.jpg')} price={99} name={"Pollo bbq"}/>
         </View>
         <View style={styles.container}>
-          <FoodCard food={require('../../assets/alimentos/hamburguesa.jpg')}/>
-          <FoodCard food={require('../../assets/alimentos/pizza.jpg')} />
+          <FoodCard food={require('../../assets/alimentos/hamburguesa.jpg')} price={120} name={"Hamburguesa"}/>
+          <FoodCard food={require('../../assets/alimentos/pizza.jpg')} price={40} name={"Pizza"} />
         </View>
         <View style={styles.container}>
-          <FoodCard food={require('../../assets/alimentos/croissant.jpg')} />
-          <FoodCard food={require('../../assets/alimentos/sandwich.jpg')} />
+          <FoodCard food={require('../../assets/alimentos/croissant.jpg')} price={70} name={"Croissant"} />
+          <FoodCard food={require('../../assets/alimentos/sandwich.jpg')} price={70} name={"Sandwich"}/>
         </View>
       </View>
     </ScrollView>

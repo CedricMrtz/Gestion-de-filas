@@ -1,13 +1,24 @@
 import { View, Text, StyleSheet, Image, ImageSourcePropType, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
+import { ProductsList } from '@/components/ProductsList'
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 interface MenuProps {
-  food: ImageSourcePropType; 
+  food: ImageSourcePropType;
+  price: number;
+  name: string;
 }
 
-const FoodCard: React.FC<MenuProps> = ({food}) => {
+const FoodCard: React.FC<MenuProps> = ({food, price, name}) => {
+
   const [favorite, setFavorite] = React.useState(false);
+  //const [product, addProduct] = React.useState<string[]>([]);
+  const {product, addProduct} = useContext(ProductsList)
+
+  const addToArray = (name: string) =>{
+    addProduct([...product, name])
+  }
+
   return (
     <View style={styles.btn}>
       { favorite ? <TouchableOpacity onPress={() => setFavorite(!favorite)}>
@@ -15,12 +26,14 @@ const FoodCard: React.FC<MenuProps> = ({food}) => {
         </TouchableOpacity>
       : <TouchableOpacity onPress={() => setFavorite(!favorite)}>
           <AntDesign style={styles.heart} name="hearto" size={24} color="#09BC8A" />
-      </TouchableOpacity> }
+      </TouchableOpacity> } 
       <View style={styles.img}>
         <Image source={food} style={{ width: 120, height: 120, borderRadius: 60 }} />
       </View>
-      <AntDesign style={styles.add} name="pluscircle" size={24} color="#09BC8A"/>
-      <Text style={styles.price}> $ 99 mxn</Text>
+      <TouchableOpacity onPress={() => addToArray(name)}>
+        <AntDesign style={styles.add} name="pluscircle" size={24} color="#09BC8A"/>
+      </TouchableOpacity>
+      <Text style={styles.price}> $ { price }</Text>
     </View>
   )
 }
