@@ -43,6 +43,7 @@ const Header: React.FC<HeaderProps> = ({text}) => {
 const styles = StyleSheet.create({
     container:{
         zIndex:1,
+        marginBottom: 68,
     },
     topBar:{
         flexDirection: 'row',

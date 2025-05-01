@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image, ImageSourcePropType, TouchableOpacity } from 'react-native'
 import React, { useContext } from 'react'
-import { ProductsList } from '@/components/ProductsList'
+import { ProductsList, Product } from '@/components/ProductsList'
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 interface MenuProps {
@@ -15,53 +15,84 @@ const FoodCard: React.FC<MenuProps> = ({food, price, name}) => {
   //const [product, addProduct] = React.useState<string[]>([]);
   const {product, addProduct} = useContext(ProductsList)
 
-  const addToArray = (name: string) =>{
-    addProduct([...product, name])
+  const addToObject = (name: string, food: ImageSourcePropType, price: number) =>{
+    const id = `${name.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}`
+
+    addProduct(prev => {
+      const newItem: Product = {
+        id,
+        name,
+        food,
+        price,
+        quantity: 1,
+      }
+      console.log(product);
+      return {
+        ...prev,
+        [name]: newItem
+      }
+    })
   }
 
   return (
     <View style={styles.btn}>
-      { favorite ? <TouchableOpacity onPress={() => setFavorite(!favorite)}>
-          <AntDesign style={styles.heart} name="heart" size={24} color="#09BC8A" />
-        </TouchableOpacity>
-      : <TouchableOpacity onPress={() => setFavorite(!favorite)}>
-          <AntDesign style={styles.heart} name="hearto" size={24} color="#09BC8A" />
-      </TouchableOpacity> } 
+      <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+        <AntDesign style={styles.heartBtn} name={ favorite ? "heart" : "hearto"} size={24} color="#09BC8A" />
+      </TouchableOpacity>
       <View style={styles.img}>
         <Image source={food} style={{ width: 120, height: 120, borderRadius: 60 }} />
       </View>
-      <TouchableOpacity onPress={() => addToArray(name)}>
-        <AntDesign style={styles.add} name="pluscircle" size={24} color="#09BC8A"/>
+      <TouchableOpacity onPress={() => addToObject(name, food, price)}>
+        <AntDesign style={styles.addBtn} name="pluscircle" size={24} color="#09BC8A"/>
       </TouchableOpacity>
-      <Text style={styles.price}> $ { price }</Text>
+        <Text style={styles.priceText}> $ { price }</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  btn:{
+  btn: {
     width: 150,
     height: 179,
+    position: 'relative',
     backgroundColor: "#FFF",
     borderRadius: 13,
-    boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-    transform: [{ translateX: 18}, { translateY: 68}],
+    shadowColor: "#000",
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    marginLeft: 18,
+    // marginTop: 68
   },
-  heart:{
+  heartBtn: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
     width: 24,
-    height: 17,
-    marginLeft: 120,
-    marginTop: 10,
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  add:{
-    width: 19,
-    height: 19,
-    marginLeft: 120,
-    marginTop: 0,
+  addBtn: {
+    position: 'absolute',
+    top: 20,
+    right: 10,
+    width: 24,
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1
   },
-  price:{
-    transform: [{ translateY: -17 }],
-    marginLeft: 10,
+  priceBtn: {
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    padding: 4,
+  },
+  priceText: {
+    fontSize: 16,
+    top: 20,
+    color: '#000',
+    width: 50,
   },
   img:{
     width: 120,
@@ -70,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#09BC8A",
     marginLeft: 10,
     marginBottom: 0,
-    transform: [{ translateY: -12 }],
+    transform: [{ translateY: 12 }],
   }
 })
 

@@ -1,20 +1,22 @@
-import { View, Text, StyleSheet, TouchableOpacity, ImageSourcePropType } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, ImageSourcePropType, Image } from 'react-native'
+import React, { useContext } from 'react'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Entypo from '@expo/vector-icons/Entypo';
+import { ProductsList } from '../ProductsList';
 
 //Props passed to the component
 interface CartCardProps {
+    id: string;
     price: number;
     name: string;
     quantity: number;
     food: ImageSourcePropType
-
 }
 
 
 const CartCard: React.FC<CartCardProps> = ({name, price, food}) => {
   let [quantity, setQuantity] = React.useState(1);
+  const {product, addProduct} = useContext(ProductsList)
 
   //Delete the element
   if(quantity==0){
@@ -26,7 +28,7 @@ const CartCard: React.FC<CartCardProps> = ({name, price, food}) => {
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <View style={styles.img} />
+        <Image source={food} style={styles.img}/>
       </View>
       <View style={styles.middle}>
         <Text style={{fontSize: 20, color: 'black'}}>{ name }</Text>

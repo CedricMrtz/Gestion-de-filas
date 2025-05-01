@@ -1,12 +1,13 @@
-import { Stack } from "expo-router";
+import React from 'react'
+import { ProductsList, Product } from '@/components/ProductsList'
+import { Slot } from 'expo-router'
 
 export default function RootLayout() {
+  const [product, addProduct] = React.useState<Record<string, Product>>({})
+
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      {/* initialRouteName='Login' */}
-      <Stack.Screen name="(user)" />
-      <Stack.Screen name="_layout" />
-      <Stack.Screen name="+not-found" />
-    </Stack>
-  );
+    <ProductsList.Provider value={{ product, addProduct }}>
+      <Slot />
+    </ProductsList.Provider>
+  )
 }

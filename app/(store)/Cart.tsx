@@ -1,13 +1,15 @@
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import {useRouter} from 'expo-router'
 import { ProductsList, Product } from '@/components/ProductsList';
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from '@/components/ui/Header'
 import CartCard from '@/components/ui/CartCard'
 
 const Cart = () => {
 
-  const [product, addProduct] = React.useState<Record<string, Product>>({});
+  const { product } = useContext(ProductsList)
+  const items = Object.values(product)
+  const subtotal = items.reduce((sum, p) => sum + p.price * p.quantity, 0)
 
   const router = useRouter()
 
@@ -15,17 +17,25 @@ const Cart = () => {
     <>
       <ScrollView>
           <Header text='Carrito'/>
-
-          <ProductsList.Provider value={{product, addProduct}}>
-            {/* <CartCard/>
-            <CartCard/> */}
-          </ProductsList.Provider>
-
+            {
+              items.length === 0
+              ? <Text>Tu carrito esta vacia</Text>
+              : items.map(p =>(
+                <CartCard
+                  key={p.id}
+                  id={p.id}
+                  name={p.name}
+                  price={p.price}
+                  quantity={p.quantity}
+                  food={p.food}
+                />
+              ))
+            }
       </ScrollView>
           <View style={styles.footer}>
             <View style={styles.price}>
               <Text style={{fontSize:17}}>Subtotal</Text>
-              <Text style={{fontSize:17}}>100</Text>
+              <Text style={{fontSize:17}}>$ {subtotal}</Text>
             </View>
             <TouchableOpacity onPress={() => router.push('/(store)/Payment')}>
               <View style={styles.paybtn}>
@@ -42,6 +52,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     padding: 16,
+    marginTop: 14,
   },
   paybtn:{
     borderRadius: 27,
