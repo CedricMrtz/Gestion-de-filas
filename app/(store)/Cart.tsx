@@ -19,7 +19,7 @@ const Cart = () => {
           <Header text='Carrito'/>
             {
               items.length === 0
-              ? <Text>Tu carrito esta vacia</Text>
+              ? <Text style={styles.title} >Tu carrito esta vacio</Text>
               : items.map(p =>(
                 <CartCard
                   key={p.id}
@@ -74,7 +74,12 @@ const styles = StyleSheet.create({
     maxWidth: 340,
     marginLeft: 'auto',
     marginRight: 'auto',
-  }
+  },
+  title:{
+    textAlign: 'center',
+    fontSize: 30,
+    top: 30
+  },
 })
 
 export default Cart

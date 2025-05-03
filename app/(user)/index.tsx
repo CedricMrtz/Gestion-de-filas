@@ -23,7 +23,7 @@ export default function Index() {
         </View>
         <View style={styles.bottom}>
           <TouchableOpacity onPress={() => router.push({pathname:'/IniciarSesion', params:{ replace: 2 }})}>
-              <Text>¿Eres negocio?</Text>
+              {/* <Text>¿Eres negocio?</Text> */}
           </TouchableOpacity>
         </View>
       </ScrollView>

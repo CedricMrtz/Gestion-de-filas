@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 //Firabase imports
 import { FIREBASE_AUTH } from '@/FIrebaseConfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -30,7 +30,9 @@ const LoginForm = () => {
   }
   
   return (
+    <>
     <View style={styles.formBox}>
+      <KeyboardAvoidingView style={styles.keyboard} behavior='padding' keyboardVerticalOffset={80} >
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Correo</Text>
         <TextInput
@@ -41,7 +43,9 @@ const LoginForm = () => {
           value={email}
           />
       </View>
+      </KeyboardAvoidingView>
 
+      <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={80}>
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Contraseña</Text>
         <TextInput
@@ -53,7 +57,8 @@ const LoginForm = () => {
           value={password}
         />
       </View>
-
+      </KeyboardAvoidingView>
+    
       {loading ? <ActivityIndicator size='large' color={'#0000ff'} /> 
       : <>
         <View style={styles.buttonGroup}>
@@ -74,6 +79,7 @@ const LoginForm = () => {
         <Text style={styles.link}>Crear cuenta</Text>
       </TouchableOpacity>
     </View>
+    </>
   );
 };
 
@@ -118,6 +124,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
+  keyboard:{
+    
+  }
 });
 
 export default LoginForm;

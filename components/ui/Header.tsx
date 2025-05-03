@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     container:{
         zIndex:1,
         marginBottom: 68,
+        marginTop: 30,
     },
     topBar:{
         flexDirection: 'row',

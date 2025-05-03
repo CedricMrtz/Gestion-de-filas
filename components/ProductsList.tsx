@@ -13,9 +13,12 @@ import { ImageSourcePropType } from 'react-native';
   interface ProductsContextType {
     product: Record<string, Product>; // object where keys are product IDs
     addProduct: Dispatch<SetStateAction<Record<string, Product>>>;
-  }
+    // removeProduct: Dispatch<SetStateAction<Record<string, Product>>>;
+  } 
   
   export const ProductsList = createContext<ProductsContextType>({
     product: {},
     addProduct: () => {},
+    // removeProduct: () => {},
+    
   });

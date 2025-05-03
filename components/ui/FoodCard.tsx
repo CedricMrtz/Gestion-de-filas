@@ -36,7 +36,7 @@ const FoodCard: React.FC<MenuProps> = ({food, price, name}) => {
 
   return (
     <View style={styles.btn}>
-      <TouchableOpacity onPress={() => setFavorite(!favorite)}>
+      <TouchableOpacity onPress={() => setFavorite(!favorite)} hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}>
         <AntDesign style={styles.heartBtn} name={ favorite ? "heart" : "hearto"} size={24} color="#09BC8A" />
       </TouchableOpacity>
       <View style={styles.img}>
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     height: 24,
     alignItems: 'center',
     justifyContent: 'center',
+    // padding: 10,
   },
   addBtn: {
     position: 'absolute',
