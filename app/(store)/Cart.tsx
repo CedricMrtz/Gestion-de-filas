@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     top: 30
   },
+  
 })
 
 export default Cart
